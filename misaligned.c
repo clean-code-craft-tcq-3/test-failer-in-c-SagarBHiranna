@@ -36,7 +36,8 @@ int main() {
     //int validPair = validateColorNumberPair();
     printf("%d", result);
     assert(result == 25);
-    assert(getColorPairFromNumber==0);
+    int a=getColorPairFromNumber(10);
+    assert(a==0);
     printf("All is well (maybe!)\n");
     return 0;
 }
