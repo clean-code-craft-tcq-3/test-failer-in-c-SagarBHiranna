@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <assert.h>
+#include "tshirts.h"
 
 char size(int cms) {
     char sizeName = '\0';
