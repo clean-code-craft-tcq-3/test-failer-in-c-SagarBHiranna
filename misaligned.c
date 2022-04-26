@@ -2,12 +2,6 @@
 
 #define Max_CountInEachColorTable 5
 
-struct colorPair
-{
-	char MajorColor[8];
-	char MinorColor[8];
-};
-
 
 int printColorMap() {
     int i = 0, j = 0;
@@ -19,16 +13,21 @@ int printColorMap() {
     return i * j;
 }
 
-int getColorPairFromNumber(int pairNumber)
+int validateColorPairFromNumber(int pairNumber, char *majorColorName, char *minorColorName)
 {
-    colourPair paircolor;
+    //colourPair paircolor;
+    int returnValue = 0;
     int zeroBasedPairNumber = pairNumber - 1;
-    paircolor.majorColor = 
+    char MajorColor[8] = 
         majorColor[(zeroBasedPairNumber / Max_CountInEachColorTable)];
-    paircolor.minorColor =
+    char MinorColor[8] =
         minorColor[(zeroBasedPairNumber % Max_CountInEachColorTable)];
     //return colorPair;
-    return 1;
+    if (strcmp(MajorColor, majorColorName) && strcmp(MajorColor, minorColorName))
+    {
+        returnValue = 1;
+    }
+    return returnValue;
 }
 
 int main() {
@@ -36,7 +35,7 @@ int main() {
     //int validPair = validateColorNumberPair();
     printf("%d", result);
     assert(result == 25);
-    int a=getColorPairFromNumber(10);
+    int a=validateColorPairFromNumber(23, "Violet", "Green");
     assert(a==0);
     printf("All is well (maybe!)\n");
     return 0;
