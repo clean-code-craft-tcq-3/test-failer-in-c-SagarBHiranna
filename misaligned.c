@@ -1,8 +1,15 @@
 #include "misaligned.h"
 
+#define Max_CountInEachColorTable 5
+
+struct colorPair
+{
+	char MajorColor[8];
+	char MinorColor[8];
+};
+
+
 int printColorMap() {
-    const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
-    const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
     int i = 0, j = 0;
     for(i = 0; i < 5; i++) {
         for(j = 0; j < 5; j++) {
@@ -12,9 +19,24 @@ int printColorMap() {
     return i * j;
 }
 
+int getColorPairFromNumber(int pairNumber)
+{
+    colourPair paircolor;
+    int zeroBasedPairNumber = pairNumber - 1;
+    paircolor.majorColor = 
+        majorColor[(zeroBasedPairNumber / Max_CountInEachColorTable)];
+    paircolor.minorColor =
+        minorColor[(zeroBasedPairNumber % Max_CountInEachColorTable)];
+    //return colorPair;
+    return 1;
+}
+
 int main() {
     int result = printColorMap();
+    //int validPair = validateColorNumberPair();
+    printf("%d", result);
     assert(result == 25);
+    assert(getColorPairFromNumber==0);
     printf("All is well (maybe!)\n");
     return 0;
 }
