@@ -22,7 +22,7 @@ printf("%d | %s | %s\n", ColorPairArrayIndex, majorColor, minorColor);
 
 int printColorMap() {
     
-    int i = 0, j = 0,ColorPairArrayIndex = 1;
+    int i = 0, j = 0;
     for(i = 0; i < 5; i++) 
 	{
         for(j = 0; j < 5; j++)
