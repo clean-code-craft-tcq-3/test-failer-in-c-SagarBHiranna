@@ -13,4 +13,4 @@ struct Colorpair
 };
 
 
-int printColorMap() ;
+int printAndUpdateColorData() ;
