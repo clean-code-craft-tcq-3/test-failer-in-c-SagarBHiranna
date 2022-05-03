@@ -7,6 +7,6 @@ int alertFailureCount = 0;
 
 int networkAlertStub(float celcius);
 
-void alertInCelcius(float farenheit);
+void alertInCelcius(float fahrenheit, float (*fnPtrFahrenheitToCelcius)(float), int (*fnPtrNetworkAlertStub)(float));
 
 float fahrenheitToCelcius(float farenheit);

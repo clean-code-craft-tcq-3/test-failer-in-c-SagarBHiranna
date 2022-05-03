@@ -14,3 +14,7 @@ struct Colorpair
 
 
 int printAndUpdateColorData() ;
+
+void updateColorPairNumberData(int colorPairNumberIdx, int majorColorIndex, int minorColorIndex);
+
+void printOnScreen(int colorPairNumberIdx, char *majorColour, char *minorColour);

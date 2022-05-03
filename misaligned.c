@@ -2,17 +2,27 @@
 
 Colorpair colorpair[25];
 
+void printOnScreen(int colorPairNumberIdx, char *majorColour, char *minorColour)
+{
+    printf("%d | %s | %s\n", colorPairNumberIdx, majorColour, minorColour);
+}
+
+void updateColorPairNumberData(int colorPairNumberIdx, int majorColorIndex, int minorColorIndex)
+{
+    strcpy(colorpair[colorPairNumberIdx].MajorColor , majorColor[majorColorIndex]);
+	strcpy(colorpair[colorPairNumberIdx].MinorColor , minorColor[minorColorIndex]);
+}
+
 int printAndUpdateColorData() {
-    int i = 0, j = 0, localPairNumber=0;
-    for(i = 0; i < 5; i++) {
-        for(j = 0; j < 5; j++) {
-            localPairNumber = localPairNumber+1;
-            strcpy(colorpair[localPairNumber].MajorColor , majorColor[i]);
-	        strcpy(colorpair[localPairNumber].MinorColor , minorColor[i]);
-            printf("%d | %s | %s\n", i * 5 + j, majorColor[i], minorColor[i]);
+    int majorColorIdx = 0, minorColorIdx = 0, colorPairNumberIdx=0;
+    for(majorColorIdx = 0; majorColorIdx < 5; majorColorIdx++) {
+        for(minorColorIdx = 0; minorColorIdx < 5; minorColorIdx++) {
+            colorPairNumberIdx = colorPairNumberIdx+1;
+            updateColorPairNumberData(colorPairNumberIdx, majorColorIdx, minorColorIdx);
+            printOnScreen(colorPairNumberIdx, colorpair[colorPairNumberIdx].MajorColor, colorpair[colorPairNumberIdx].MinorColor);
         }
     }
-    return i * j;
+    return majorColorIdx * minorColorIdx;
 }
 
 int main() {
@@ -20,6 +30,8 @@ int main() {
     assert(result == 25);
     assert(strcmp(colorpair[23].MajorColor, "Violet") == 0);
 	assert(strcmp(colorpair[23].MinorColor, "Green") == 0);
+    assert(strcmp(colorpair[12].MajorColor, "Black") == 0);
+	assert(strcmp(colorpair[12].MinorColor, "Orange") == 0);
     printf("All is well (maybe!)\n");
     return 0;
 }

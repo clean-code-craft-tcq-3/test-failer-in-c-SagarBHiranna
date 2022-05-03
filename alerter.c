@@ -13,28 +13,33 @@ int networkAlertStub(float celcius) {
 
 //SRP principle 
 
-float fahrenheitToCelcius(float farenheit)
+float fahrenheitToCelcius(float fahrenheit)
 {
-     return ((farenheit - 32) * 5 / 9);
+     return ((fahrenheit - 32) * 5 / 9);
 }
 
-void alertInCelcius(float farenheit) {
-    float celcius = fahrenheitToCelcius(farenheit);
-    int returnCode = networkAlertStub(celcius);
+//Usage of function pointer concept
+void alertInCelcius(float fahrenheit, float (*fnPtrFahrenheitToCelcius)(float), int (*fnPtrNetworkAlertStub)(float)) {
+    float celcius = fnPtrFahrenheitToCelcius(fahrenheit);
+    int returnCode = fnPtrNetworkAlertStub(celcius);
     if (returnCode != 200) {
         // non-ok response is not an error! Issues happen in life!
         // let us keep a count of failures to report
         // However, this code doesn't count failures!
         // Add a test below to catch this bug. Alter the stub above, if needed.
-        alertFailureCount += 0;
+        alertFailureCount += 1;
     }
 }
 
 int main() {
-    alertInCelcius(400.5);
-    alertInCelcius(303.6);
+    //Usage of function pointer concept
+    alertInCelcius(400.5, &fahrenheitToCelcius, &networkAlertStub);
+    alertInCelcius(303.6, &fahrenheitToCelcius, &networkAlertStub);
     printf("%d alerts failed.\n", alertFailureCount);
     assert(alertFailureCount == 1);
+    alertInCelcius(500, &fahrenheitToCelcius, &networkAlertStub);
+    printf("%d alerts failed.\n", alertFailureCount);
+    assert(alertFailureCount == 2);   
     printf("All is well (maybe!)\n");
     return 0;
 }
